@@ -48,10 +48,41 @@ analdir <- here("analysis")
 
 # Data
 
+## Southern resident killer whales
+
 The counts of southern resident killer whales (SRKW) come from the [Center for Whale Research](https://www.whaleresearch.com/orcasurvey), and are broken down by the three major groups: J, K and L pods.
 
-```{r read_data}
-dat <- read_csv(file.path(datadir, "SRKW.csv"))
-head(dat)
+```{r read_srkw}
+kw <- read_csv(file.path(datadir, "SRKW.csv"))
+head(kw)
 ```
+
+## Snake River spring Chinook
+
+The counts of Snake River spring Chinook at Lower Granite Dam come from [Columbia Basin Research](http://www.cbr.washington.edu/dart/query/adult_annual_sum). I'll devide them by 1000 to make them more similar in magnitude to the SRKW data.
+
+```{r get_srss}
+ss <- read_csv(file.path(datadir, "SRSS.csv"))
+ss[,2] <- ss[,2]/1000
+head(ss)
+```
+
+# Plots
+
+Here are plots of the time series of counts for orcas and salmon.
+
+```{r, fig.height=8, fig.width=6}
+par(mfrow=c(2,1), mai=c(0.8,0.8,0.2,0), omi=rep(0.1,4))
+## orcas
+matplot(kw[,1], kw[,-1], type="l", lty="solid",
+        xlab = "", ylab = "Count", col = viridis::viridis(4, end = 0.8))
+text(2018,kw[nrow(kw),-1],c("J","K","L","All"), cex=0.7, col = viridis::viridis(4, end = 0.8))
+mtext("Southern resident killer whales", 3, adj=0, line=0.5)
+## salmon
+matplot(ss[,1], ss[,2], type="l", lty="solid",
+     xlab = "Year", ylab = "Count", col = viridis::viridis(1))
+mtext("Snake River spring Chinook", 3, adj=0, line=0.5)
+```
+
+
 
