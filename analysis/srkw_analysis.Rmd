@@ -1,0 +1,57 @@
+---
+title: "Analysis of temporal trends in southern resident killer whales"
+output:
+  html_document:
+    fig_caption: yes
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+    number_sections: true
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+***
+
+This is version `r paste0('0.',format(Sys.time(), '%y.%m.%d'))`.
+
+***
+
+```{r set_options, echo = FALSE, message = FALSE}
+options(width = 100)
+knitr::opts_chunk$set(message = FALSE)
+```
+
+# Requirements
+
+All analyses require the [R software](https://cran.r-project.org/) (v3.4+) for data retrieval, data processing, and summarizing model results. We also need a few packages that are not included with the base installation of R, so we begin by installing them (if necessary) and then loading them.
+
+```{r load_pkgs, message = FALSE, warning = FALSE}
+if(!require("here")) {
+  install.packages("here")
+  library("here")
+}
+if(!require("readr")) {
+  install.packages("readr")
+  library("readr")
+}
+if(!require("ggplot2")) {
+  install.packages("ggplot2")
+  library("ggplot2")
+}
+## set directory locations
+datadir <- here("data")
+analdir <- here("analysis")
+```
+
+# Data
+
+The counts of southern resident killer whales (SRKW) come from the [Center for Whale Research](https://www.whaleresearch.com/orcasurvey), and are broken down by the three major groups: J, K and L pods.
+
+```{r read_data}
+dat <- read_csv(file.path(datadir, "SRKW.csv"))
+head(dat)
+```
+
