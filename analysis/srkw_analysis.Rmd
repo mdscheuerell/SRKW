@@ -73,10 +73,11 @@ Here are plots of the time series of counts for orcas and salmon.
 
 ```{r, fig.height=8, fig.width=6}
 par(mfrow=c(2,1), mai=c(0.8,0.8,0.2,0), omi=rep(0.1,4))
+clr <- rev(viridis::viridis(4, end = 0.8))
 ## orcas
 matplot(kw[,1], kw[,-1], type="l", lty="solid",
-        xlab = "", ylab = "Count", col = viridis::viridis(4, end = 0.8))
-text(2018,kw[nrow(kw),-1],c("J","K","L","All"), cex=0.7, col = viridis::viridis(4, end = 0.8))
+        xlab = "", ylab = "Count", col = clr)
+text(2018,kw[nrow(kw),-1],c("J","K","L","All"), cex=0.7, col = clr)
 mtext("Southern resident killer whales", 3, adj=0, line=0.5)
 ## salmon
 matplot(ss[,1], ss[,2], type="l", lty="solid",
