@@ -85,6 +85,14 @@ matplot(ss[,1], ss[,2], type="l", lty="solid",
 mtext("Snake River spring Chinook", 3, adj=0, line=0.5)
 ```
 
+It is perhaps more informative to look at the year-to-year differences in the counts of SRKW, as that gives an indication as to whether births exceed deaths.
 
+```{r plot_diffs, fig.height=4, fig.width=6}
+## difference ts
+kwd <- apply(kw[,-1], 2, diff)
+par(mai=c(0.8,0.8,0.2,0), omi=rep(0.1,4))
+matplot(kw[-1,1], kwd[,-1], type="l", lty="solid",
+        xlab = "", ylab = "Count", col = clr)
+```
 
 
