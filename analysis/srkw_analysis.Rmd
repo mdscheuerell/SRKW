@@ -96,3 +96,13 @@ matplot(kw[-1,1], kwd, type="l", lty="solid",
         xlab = "", ylab = "Count", col = clr)
 ```
 
+# Correlations
+
+Here are the correlations among the differenced counts of SRKW and SRSS Chinook.
+
+```{r corr}
+## raw counts of Chinook
+round(cor(x = ss[-n_yr,2], y = kwd), 2)
+## log counts of Chinook
+round(cor(x = log(ss[-n_yr,2]), y = kwd), 2)
+```
