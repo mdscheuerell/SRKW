@@ -55,6 +55,7 @@ The counts of southern resident killer whales (SRKW) come from the [Center for W
 ```{r read_srkw}
 kw <- read_csv(file.path(datadir, "SRKW.csv"))
 head(kw)
+n_yr <- nrow(kw)
 ```
 
 ## Snake River spring Chinook
@@ -89,10 +90,9 @@ It is perhaps more informative to look at the year-to-year differences in the co
 
 ```{r plot_diffs, fig.height=4, fig.width=6}
 ## difference ts
-kwd <- apply(kw[,-1], 2, diff)
+kwd <- apply(kw[,2:4], 2, diff)
 par(mai=c(0.8,0.8,0.2,0), omi=rep(0.1,4))
-matplot(kw[-1,1], kwd[,-1], type="l", lty="solid",
+matplot(kw[-1,1], kwd, type="l", lty="solid",
         xlab = "", ylab = "Count", col = clr)
 ```
-
 
