@@ -68,6 +68,18 @@ ss[,2] <- ss[,2]/1000
 head(ss)
 ```
 
+## Puget Sound Chinook
+
+
+```{r read_ps}
+ps_raw <- read_csv(file.path(datadir, "PS_Chin.csv"))
+head(ps_raw)
+ps <- aggregate(spawners ~ year, data = ps_raw, sum)
+plot(ps[,1], ps[,2], type="l")
+```
+
+
+
 # Plots
 
 Here are plots of the time series of counts for orcas and salmon.
@@ -106,3 +118,4 @@ round(cor(x = ss[-n_yr,2], y = kwd), 2)
 ## log counts of Chinook
 round(cor(x = log(ss[-n_yr,2]), y = kwd), 2)
 ```
+
